@@ -1,0 +1,881 @@
+<!doctype html>
+<html>
+<head>
+<script src="../js/jquery-1.11.3.min.js"></script>
+<style>
+/*reset*/
+body{margin:0; background-color:#f3f3f3;}
+ul{margin:0;padding:0;}
+li{list-style:none;}
+a,img,p,h1,h2{text-decoration:none;padding:0;margin:0;display:block;font-family:"微软雅黑";color:#333}
+.overflowH{overflow:hidden;}
+.clearB{ clear:both}
+hr{margin:0;padding:0;}
+/*header*/
+.area{width:992px;margin-left:auto;margin-right:auto;}
+.logo{float:left;}
+.logo img{margin-left:6px;margin-top:15px;}
+.top_input{float:right;}
+.language li{float:left;}
+.language dl{ margin-left:110px;}
+.language a{color:#507975;font-size:10px;}
+.input *{ float:left; margin-top:15px;color:#999;}
+.input img{ cursor:pointer;}
+.input input{ width:205px;height:26px;}
+/*topnav*/
+.topnav .area{position:relative;}
+.topnavlink{background-image:url(images/topnavbg.png);}
+.topnavlink li{float:left;width:116px;height:46px;}
+.topnavlink a{text-align:center;font-size:18px;color:white;letter-spacing:2px; margin-top:13px; margin-bottom:18px;}
+.topnavlink .firstpageimg{ margin-left:1px;width:58px;height:46px;}
+.topnavlink .special_one{width:107px;height:46px;}
+.topnavlink .special_two{width:97px;height:46px;}
+.topnavlink .special_three{width:146px;height:46px;}
+.firstpageimg img{ margin-left:auto; margin-right:auto; margin-top:14px;}
+.nav_current{border:1px #1f7070 solid; background-color:#228687; background-image:url(images/down_bg.png); background-repeat:no-repeat; background-position:center bottom;}
+/*down_menu*/
+.down_menu_one{position:absolute;width:1065px;height:34px;left:10px;top:46px}
+.down_menu_one li{float:left;}
+.down_menu_one a{font-size:12px;color:#333;}
+/*banner*/
+.bannerimg{position:relative;margin-top:40px;width:992px;height:260px;border-top:solid 1px #d2d2d2;}
+.bannerimg img{float:left;}
+.personalbox{position:absolute;background-color:white;width:239px;border-radius:2px;height:227px;left:30px;top:15px;}
+.ctrl{position:absolute;right:0;bottom:0px;}
+.ctrl span{cursor:pointer;width:20px;height:14px;background-color:#3f745f;color:white; font-family:Arial; margin-left:1px; line-height:15px;text-align:center;float:left;}
+.ctrl .ctrl_current{background-color:#2f9e8b;}
+.entry{ margin-left:36px; background-image:url(images/lock.png); background-position:2% center;background-repeat:no-repeat;}
+.entry h2{ letter-spacing:1px;font-size:16px; margin-left:32px; margin-top:18px; font-weight:normal;}
+.entry_btn{ margin-top:15px;}
+.entry_btn li{width:210px;height:33px;border:solid 1px #33afb1; background-image:url(images/entry_btn_bg.png); text-align:center;border-radius:2px; margin-left:13px;margin-bottom:10px;}
+.entry_btn a{ margin-top:5px; font-size:14px; color:white}
+.safebox{ background-image:url(images/safe.png); background-repeat:no-repeat; background-position:29px center;}
+.safebox p{ float:left; font-size:12px; margin-left:55px;cursor:pointer;}
+/*main*/
+.main_left,.main_right{float:left;}
+	/*main_left*/
+		/*preferential*/
+.preferential,.recommend,.money,.banner_bottom,.e_station,.news{width:700px;border-bottom:solid 1px #e7e7e7;border-left:solid 1px #e7e7e7;border-right:solid 1px #e7e7e7; background-color:white;}
+.preferential{height:122px; margin-top:25px; background-image:url(images/preferentialbg.png); background-repeat:no-repeat; background-position:center center;}
+.preferential h2{ font-size:14px; margin-left:31px; margin-top:15px; margin-bottom:22px;}
+.preferential p{ font-size:12px; margin-bottom:10px;}
+.preferential_one,.preferential_two{float:left;width:350px;position:relative;}
+.preferential h2,.preferential p{ margin-left:26px;}
+.preferential span{cursor:pointer;margin-left:200px;color:#9f9f9f;}
+.preferential_one img{position:absolute;left:2px;top:-5px;}
+.preferential_two img{position:absolute;right:18px;top:55px;}
+		/*recommend*/
+.recommend{height:184px; margin-top:26px;}
+.recommend_top{ position:relative;width:670px; border-bottom:solid 1px #e7e7e7; margin-left:15px;}
+.recommend_top h2{font-size:16px; margin-left:16px; margin-top:15px; margin-bottom:10px;float:left;}
+.recommend_top img{position:absolute;left:-13px;top:-5px;}
+.recommend_nav{float:left; margin-left:50px;}
+.recommend_nav a{float:left;text-align:center;font-size:16px; color:#b2b2b2;margin-left:42px;line-height:45px;}
+.recommend_bottom{ float:left;}
+.recommend_img1,.recommend_news,.recommend_img2,.recommend_img3,.recommend_img4,.recommend_link{ float:left;}
+.recommend_img1{ margin-left:25px; margin-top:15px;}
+.recommend_news{ margin-left:15px; margin-top:25px;}
+.recommend_news a{ line-height:26px; font-size:12px;}
+.recommend_img2{ margin-left:4px; margin-top:28px;}
+.recommend_img3{ margin-left:54px; margin-top:22px;}
+.recommend_img4{ margin-left:45px; margin-top:28px;}
+.recommend_link{ margin-left:15px; margin-top:28px;}
+.recommend_link a{ line-height:26px; font-size:12px;}
+.recommend .recommend_current{border-bottom:solid 2px #439391;color:#439391;}
+		/*money*/
+.money{height:184px; margin-top:26px;}
+.money_top{width:670px; border-bottom:solid 1px #e7e7e7; margin-left:15px;}
+.money_top img{ float:left; margin-top:15px; margin-left:6px;}
+.money_top h2{font-size:16px; margin-left:16px; margin-top:15px; margin-bottom:10px;float:left;}
+.money_nav{float:left; margin-left:55px;}
+.money_nav a{float:left;text-align:center;font-size:16px; color:#b2b2b2;margin-left:42px;line-height:45px;}
+.money_bottom{ float:left;}
+.money_img1,.money_news,.money_percent,.money_img2,.money_img3,.money_link,.money_link_one{ float:left;}
+.money_news{ margin-left:30px; margin-top:28px;}
+.money_news a{ line-height:26px; font-size:12px;}
+.money_percent{ margin-left:80px; margin-top:28px;}
+.money_percent a{line-height:26px;color:#ff8f00;}
+.money_img1{ margin-left:40px; margin-top:28px;}
+.money_img2{ margin-left:16px; margin-top:38px;}
+.money_img3{ margin-left:39px; margin-top:38px;}
+.money_link,.money_link_one{ margin-left:18px; margin-top:28px;}
+.money_link a,.money_link_one a{ line-height:26px; font-size:12px;}
+.money .money_current{border-bottom:solid 2px #439391;color:#439391;}
+.banner_bottom{position:relative;height:170px;margin-top:22px;}
+.banner_bottom img{float:left;}
+.banner_bottom_ctrl{ position:absolute;right:0;bottom:0;}
+.banner_bottom_ctrl span{cursor:pointer;width:19px;height:15px;margin-left:2px;color:white; text-align:center;background-color:#3f745f;float:left;}
+.banner_bottom .banner_bottom_current{background-color:#2f9e8b;}
+		/*e_station*/
+.e_station{height:140; margin-top:18px;}
+.e_top{width:203px;height:40px; margin-left:15px; margin-right:15px; border-bottom:solid 1px #dedede;}
+.e_top,.e_top *{ float:left;}
+.e_top h2{font-size:16px; margin-left:15px; margin-top:15px;}
+.e_top img{ margin-top:15px; margin-left:6px;}
+.e_bottom img{ margin-left:25px;}
+		/*news*/
+.news{height:153px;}
+	/*main_right*/
+.main_right{ margin-left:25px;}
+.facile,.access,.custom,.online_shopping_hall{width:263px;background-color:white;border-bottom:solid 1px #e7e7e7;border-left:solid 1px #e7e7e7;border-right:solid 1px #e7e7e7;}
+		/*facile*/
+.facile{ background-image:url(images/right_bg.png); background-repeat:no-repeat; background-position:0 265px;;height:384px; margin-top:22px; border-top:solid 3px #2e9594}
+.facilebox{width:263px;height:41px;border-bottom:#dee4eb 2px solid;}
+.facilebox h2{ text-align:center;color:#259293; margin-top:2px;}
+.faciletext_one{ margin-left:24px;margin-top:15px; float:left}
+.faciletext_two{ margin-left:30px;margin-top:15px; float:left}
+.facileimg{overflow:hidden; margin-top:13px;}
+.facile img,.facile a{float:left;}
+.facile a{margin-left:9px; margin-top:4px;font-size:12px;}
+.faciletext_three{ margin-left:24px; margin-top:33px; float:left;}
+.faciletext_four{ margin-left:40px; margin-top:33px; float:left;}
+		/*access*/
+.access{height:102px; margin-top:10px;}
+		/*custom*/
+.custom{background-image:url(images/right_bg_1.png);background-repeat:no-repeat;background-position:0 175px;height:437px; margin-top:10px;border-top:solid 3px #2e9594;}
+.custombox{width:263px;height:41px;border-bottom:#dee4eb 2px solid;}
+.custom h2{ text-align:center;color:#259293; margin-top:2px;}
+.custom_one{ margin-left:26px;margin-top:11px; float:left}
+.custom_two{ margin-left:30px;margin-top:11px; float:left}
+.customimg{overflow:hidden; margin-top:15px;}
+.customimg *{ float:left;}
+.customimg a{ margin-left:9px; margin-top:7px; font-size:12px}
+.wechate *{ float:left;cursor:pointer}
+.wechateimg_one{ margin-left:25px;margin-top:64px}
+.wechateimg_two{ margin-left:13px; margin-top:56px}
+.wechate a{ font-size:12px;margin-left:7px; margin-top:73px;}
+.bank *{ float:left;cursor:pointer}
+.bankimg_one{ margin-left:25px;margin-top:58px}
+.bankimg_two{ margin-left:13px; margin-top:48px}
+.bank a{ font-size:12px;margin-left:7px; margin-top:64px;}
+.online_shopping_hall{height:102px; margin-top:11px;}
+/*footer*/
+.footer{height:91px; background-color:white;margin-top:17px;border-top:solid 3px #2e9594;}
+.footerbox{ margin-top:15px;}
+.footerbox *{ float:left;}
+.earth{margin-left:10px}
+.honest{ margin-left:53px;}
+.select{ margin-left:49px;}
+.footerbox a{ font-size:12px;}
+.footer_bottom{ margin-left:auto; margin-right:auto;}
+.footer_bottom p{ text-align:center; font-size:12px;}
+</style>
+<meta charset="utf-8">
+<title>农业银行</title>
+</head>
+
+<body>
+<!--header-->
+<div class="header">
+	<div class="area overflowH">
+    	<div class="logo">
+        	<a href=""><img src="images/logo.png"></a>
+        </div>
+        <div class="top_input">
+        	<div class="language">
+            	<dl>
+                	<li><a href="">简体中文&nbsp;&nbsp;|&nbsp;&nbsp;</a></li>
+                    <li><a href="">繁体中文&nbsp;&nbsp;|&nbsp;&nbsp;</a></li>
+                    <li><a href="">English</a></li>
+                </dl>
+            </div>
+            <div class="input">
+            	<input value="&nbsp;关键词">
+                <img src="images/search.png">
+            </div>
+        </div>
+    </div>
+</div>
+<!--topnav-->
+<div class="topnav">
+	<div class="area">
+        <dl class="topnavlink overflowH">
+        	<li class="firstpageimg"><img src="images/firstpage_logo.png"></li>
+        	<li><a href="">个人服务</a></li>
+            <li><a href="">企业服务</a></li>
+            <li><a href="">三农服务</a></li>
+            <li><a href="">电子银行</a></li>
+            <li class="special_one"><a href="">理财e站</a></li>
+            <li class="special_two"><a href="">信用卡</a></li>
+            <li><a href="">农行风貌</a></li>
+            <li class="special_three"><a href="">投资者关系</a></li>
+        </dl>
+        <div class="downlist">
+            <div class="down_menu_one">
+                <dl>
+                    <li><a style="color:#000">热门栏目:</a></li>
+                    <li><a href="">&nbsp;&nbsp;&nbsp;&nbsp;在线充值&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">银行理财&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">基金&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">贵金属&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">我的客户经理&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">人才招聘&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">图说农行&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">小积分大梦想&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">金融专营店&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">生活e站</a></li>
+                </dl>
+            </div>
+            <div class="down_menu_one">
+                <dl>
+                    <li><a href="">&nbsp;&nbsp;&nbsp;&nbsp;存款&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">贷款&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">借记卡&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">外汇&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">支付结算&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">留学金融&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">投资理财&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">贵宾服务&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">私人银行&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">养老金</a></li>
+                </dl>
+            </div>
+            <div class="down_menu_one">
+                <dl>
+                    <li><a href="">&nbsp;&nbsp;&nbsp;&nbsp;存款服务&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">融资融信&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">支付结算&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">现金管理&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">交易业务&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">投资理财&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">投资银行&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">托管业务&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">银行卡&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">金融市场&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">金融同业&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">小微企业&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">国际业务&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">养老金</a></li>
+                </dl>
+            </div>
+            <div class="down_menu_one">
+                <dl>
+                    <li><a href="">&nbsp;&nbsp;&nbsp;&nbsp;最新动态&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">三农个人产品&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">三农对公产品&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">三农资讯</a></li>
+            </div>
+            <div class="down_menu_one">
+                <dl>
+                    <li><a href="">&nbsp;&nbsp;&nbsp;&nbsp;个人电子银行&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">服务与功能&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">个人网上银行&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">掌上银行&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">电话银行&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">自助银行&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">安全专区</a></li>
+                </dl>
+            </div>
+            <div class="down_menu_one">
+                <dl>
+                    <li><a href="">&nbsp;&nbsp;&nbsp;&nbsp;理财e站&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">银行理财&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">基金&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">贵金属&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">保险&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">外汇&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">债券&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">农银汇理&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">农银人寿</a></li>
+                </dl>
+            </div>
+            <div class="down_menu_one">
+                <dl>
+                    <li><a href="">&nbsp;&nbsp;&nbsp;&nbsp;产品推荐&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">品牌动态&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">积分计划&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">优惠活动&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">分期付款&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">优惠商户&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">增值服务&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">商户服务&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">联系我们</a></li>
+                </dl>
+            </div>
+            <div class="down_menu_one">
+                <dl>
+                    <li><a href="">&nbsp;&nbsp;&nbsp;&nbsp;新闻中心&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">媒体视角&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">关于农行&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">农行年报&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">企业社会责任&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">农行印象&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">农银研究&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">人才招聘&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">中国城乡金融报&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">联系我们</a></li>
+                </dl>
+            </div>
+            <div class="down_menu_one">
+                <dl>
+                    <li><a href="">&nbsp;&nbsp;&nbsp;&nbsp;公司概述&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">投资价值&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">公司公告&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">企业社会责任&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">业绩报告&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">监管资本&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">股票及分红&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">公司治理&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">业绩推介&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">投资者服务&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="">信用评级</a></li>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+<!--banner-->
+<div class="banner">
+	<div class="area">
+    	<div class="bannerimg overflowH">
+            <a href=""><img src="images/banner_1.png"></a>
+            <a href=""><img src="images/banner_2.png"></a>
+            <a href=""><img src="images/banner_3.png"></a>
+            <div class="personalbox">
+            	<div class="entry">
+                    <h2>网上银行登录</h2>
+                </div>
+                <div class="entry_btn">
+                	<ul>
+                    	<a href=""><li><a href="">个人网上银行登录</li></a></a>
+                        <a href=""><li><a href="">企业网上银行登录</li></a></a>
+                        <a href=""><li><a href="">电子商务登录</li></a></a>
+                    </ul>
+                </div>
+                <div class="safebox overflowH">
+                	<p>证书向导</p>
+                    <p>安全专区</p>
+                </div>
+            </div>
+            <div class="ctrl">
+            	<span>1</span>
+                <span>2</span>
+                <span>3</span>
+            </div>
+    	</div>
+    </div>
+</div>
+<!--main-->
+<div class="main">
+	<div class="area overflowH">
+		<div class="main_left">
+			<div class="preferential">
+            	<div class="preferential_one">
+                	<h2>优惠信息<span>更多</span></h2>
+                    <a href=""><p>全国——尚品网时尚嘉年华购物优惠活动</p></a>
+                    <a href=""><p>全国——88元优惠“唯”你享，唯品会购物优...</p></a>
+                    <img src="images/preferential.png">
+                    <div class="clearB"></div>
+                </div>
+                <div class="preferential_two">
+                	<h2>服务公告<span>更多</span></h2>
+                    <a href=""><p>关于国家开发银行2015年金融债券招标结果的公告</p></a>
+                    <a href=""><p>关于支付清算系统暂停运行的通知（10月24日）</p></a>
+                    <img src="images/new.png">
+                    <div class="clearB"></div>
+                </div>
+            </div>
+            <div class="recommend">
+            	<div class="recommend_top">
+                	<h2>热门推荐</h2>
+                    <div class="recommend_nav">
+                        <a href="">电子银行</a>
+                        <a href="">银行卡</a>
+                        <a href="">个人服务</a>
+                        <a href="">企业服务</a>
+                        <a href="">三农服务</a>
+                    </div>
+                    <img src="images/hot0.png">
+                    <div class="clearB"></div>
+                </div>
+                <div class="recommend_click">
+                    <div class="recommend_bottom">
+                        <div class="recommend_img1"><img src="images/gold.png"></div>
+                        <div class="recommend_news">
+                            <a href="">e购天街&nbsp;打造精致生活</a>
+                            <a href="">自动理财，天天利滚利</a>
+                            <a href="">网银助手&nbsp;让网银更简单</a>
+                        </div>
+                        <div class="recommend_img2"><img src="images/hot.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div class="recommend_img3"><img src="images/preferentialbg.png"></div>
+                        <div class="recommend_img4"><img src="images/recommend_link.png"></div>
+                        <div class="recommend_link">
+                            <a href="">个人网银自助注册</a>
+                            <a href="">企业网银开通指南</a>
+                            <a href="">网上K码支付开通</a>
+                        </div>
+                    </div>
+                    <div class="recommend_bottom">
+                        <div class="recommend_img1"><img src="images/gold_1.png"></div>
+                        <div class="recommend_news">
+                            <a href="">存款保险&nbsp;保护您珍贵的存款</a>
+                            <a href="">留学金融，全程服务，无忧留学</a>
+                            <a href="">“聪明账”，自动约转，便捷消费</a>
+                        </div>
+                        <div class="recommend_img2"><img src="images/hot.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div class="recommend_img3"><img src="images/preferentialbg.png"></div>
+                        <div class="recommend_img4"><img src="images/recommend_link.png"></div>
+                        <div class="recommend_link">
+                            <a href="">个人网银自助注册</a>
+                            <a href="">企业网银开通指南</a>
+                            <a href="">网上K码支付开通</a>
+                        </div>
+                    </div>
+                    <div class="recommend_bottom">
+                        <div class="recommend_img1"><img src="images/gold_2.png"></div>
+                        <div class="recommend_news">
+                            <a href="">存款保险&nbsp;保护您珍贵的存款</a>
+                            <a href="">留学金融，全程服务，无忧留学</a>
+                            <a href="">“聪明帐”，自动约转，便捷消费&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        </div>
+                        <div class="recommend_img3"><img src="images/preferentialbg.png"></div>
+                        <div class="recommend_img4"><img src="images/preferential_link.png"></div>
+                        <div class="recommend_link">
+                            <a href="">个贷在线申请</a>
+                            <a href="">私人银行</a>
+                            <a href="">贵宾服务</a>
+                        </div>
+                    </div>
+                    <div class="recommend_bottom">
+                        <div class="recommend_img1"><img src="images/gold_3.png"></div>
+                        <div class="recommend_news">
+                            <a href="">金融同业，全球视野，融会贯通</a>
+                            <a href="">现金管理，大略行云，智理天下</a>
+                            <a href="">资产托管，专业铸就，值得信赖</a>
+                        </div>
+                        <div class="recommend_img2" style=" margin-top:80px"><img src="images/hot_1.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div class="recommend_img3"><img src="images/preferentialbg.png"></div>
+                        <div class="recommend_img4"><img src="images/company_link.png"></div>
+                        <div class="recommend_link">
+                            <a href="">法人贷款在线申请</a>
+                            <a href="">资产处置</a>
+                            <a href="">常年财务顾问</a>
+                        </div>
+                    </div>
+                    <div class="recommend_bottom">
+                        <div class="recommend_img1"><img src="images/gold_4.png"></div>
+                        <div class="recommend_news">
+                            <a href="">惠农信用卡，以城惠农，以信立农</a>
+                            <a href="">金穗惠农卡，服务三农，益农万家</a>
+                            <a href="">农户小额贷款，惠农专享，快捷服务</a>
+                        </div>
+                        <div class="recommend_img2" style=" margin-top:55px"><img src="images/hot_1.png"></div>
+                        <div class="recommend_img3"><img src="images/preferentialbg.png"></div>
+                        <div class="recommend_img4"><img src="images/three_farmer_link.png"></div>
+                        <div class="recommend_link">
+                            <a href="">三农资讯</a>
+                            <a href="">农产品行情信息</a>
+                            <a href="">金穗惠农卡</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearB"></div>
+            </div>
+            <div class="money overflowH">
+            	<div class="money_top">
+                	<h2>理财</h2><img src="images/estation.png"><h2 style="margin-left:3px;;">站</h2>
+                    <div class="money_nav">
+                        <a href="">理财</a>
+                        <a href="">基金</a>
+                        <a href="">贵金属</a>
+                        <a href="">债券</a>
+                        <a href="">外汇</a>
+                        <a href="">保险</a>
+                    </div>
+                    <div class="clearB"></div>
+                </div>
+                <div class="money_click">
+                    <div class="money_bottom">
+                        <div class="money_news">
+                            <a href="">中国农业银行“安心·360天”人民币理财产品</a>
+                            <a href="">“金钥匙·安心得利·181天”人民币理财产品</a>
+                            <a href="">“金钥匙·安心得利·90天”人民币理财产品</a>
+                        </div>
+                        <div class="money_percent">
+                        	<a href="">4.55%</a>
+                            <a href="">&nbsp;&nbsp;4.5%</a>
+                            <a href="">4.45%</a>
+                        </div>
+                        <div class="money_img1"><img src="images/preferentialbg.png"></div>
+                        <div class="money_img2"><img src="images/moneybg.png"></div>
+                        <div class="money_link">
+                            <a href="">热销理财</a>
+                            <a href="">收益排行</a>
+                            <a href="">自动理财</a>
+                        </div>
+                        <div class="money_img3"><img src="images/moneybg.png"></div>
+                        <div class="money_link_one">
+                            <a href="">产品公告</a>
+                            <a href="">产品净值</a>
+                            <a href="">线上理财师</a>
+                    	</div>
+                	</div>
+                    <div class="money_bottom">
+                        <div class="money_news">
+                            <a href="">中国农业银行“安心·360天”人民币理财产品</a>
+                            <a href="">“金钥匙·安心得利·181天”人民币理财产品</a>
+                            <a href="">“金钥匙·安心得利·90天”人民币理财产品</a>
+                        </div>
+                        <div class="money_percent">
+                        	<a href="">4.55%</a>
+                            <a href="">&nbsp;&nbsp;4.5%</a>
+                            <a href="">4.45%</a>
+                        </div>
+                        <div class="money_img1"><img src="images/preferentialbg.png"></div>
+                        <div class="money_img2"><img src="images/moneybg.png"></div>
+                        <div class="money_link">
+                            <a href="">热销理财</a>
+                            <a href="">收益排行</a>
+                            <a href="">自动理财</a>
+                        </div>
+                        <div class="money_img3"><img src="images/moneybg.png"></div>
+                        <div class="money_link_one">
+                            <a href="">产品公告</a>
+                            <a href="">产品净值</a>
+                            <a href="">线上理财师</a>
+                    	</div>
+                	</div>
+                    <div class="money_bottom">
+                        <div class="money_news">
+                            <a href="">中国农业银行“安心·360天”人民币理财产品</a>
+                            <a href="">“金钥匙·安心得利·181天”人民币理财产品</a>
+                            <a href="">“金钥匙·安心得利·90天”人民币理财产品</a>
+                        </div>
+                        <div class="money_percent">
+                        	<a href="">4.55%</a>
+                            <a href="">&nbsp;&nbsp;4.5%</a>
+                            <a href="">4.45%</a>
+                        </div>
+                        <div class="money_img1"><img src="images/preferentialbg.png"></div>
+                        <div class="money_img2"><img src="images/moneybg.png"></div>
+                        <div class="money_link">
+                            <a href="">热销理财</a>
+                            <a href="">收益排行</a>
+                            <a href="">自动理财</a>
+                        </div>
+                        <div class="money_img3"><img src="images/moneybg.png"></div>
+                        <div class="money_link_one">
+                            <a href="">产品公告</a>
+                            <a href="">产品净值</a>
+                            <a href="">线上理财师</a>
+                    	</div>
+                	</div>
+                    <div class="money_bottom">
+                        <div class="money_news">
+                            <a href="">中国农业银行“安心·360天”人民币理财产品</a>
+                            <a href="">“金钥匙·安心得利·181天”人民币理财产品</a>
+                            <a href="">“金钥匙·安心得利·90天”人民币理财产品</a>
+                        </div>
+                        <div class="money_percent">
+                        	<a href="">4.55%</a>
+                            <a href="">&nbsp;&nbsp;4.5%</a>
+                            <a href="">4.45%</a>
+                        </div>
+                        <div class="money_img1"><img src="images/preferentialbg.png"></div>
+                        <div class="money_img2"><img src="images/moneybg.png"></div>
+                        <div class="money_link">
+                            <a href="">热销理财</a>
+                            <a href="">收益排行</a>
+                            <a href="">自动理财</a>
+                        </div>
+                        <div class="money_img3"><img src="images/moneybg.png"></div>
+                        <div class="money_link_one">
+                            <a href="">产品公告</a>
+                            <a href="">产品净值</a>
+                            <a href="">线上理财师</a>
+                    	</div>
+                	</div>
+                    <div class="money_bottom">
+                        <div class="money_news">
+                            <a href="">中国农业银行“安心·360天”人民币理财产品</a>
+                            <a href="">“金钥匙·安心得利·181天”人民币理财产品</a>
+                            <a href="">“金钥匙·安心得利·90天”人民币理财产品</a>
+                        </div>
+                        <div class="money_percent">
+                        	<a href="">4.55%</a>
+                            <a href="">&nbsp;&nbsp;4.5%</a>
+                            <a href="">4.45%</a>
+                        </div>
+                        <div class="money_img1"><img src="images/preferentialbg.png"></div>
+                        <div class="money_img2"><img src="images/moneybg.png"></div>
+                        <div class="money_link">
+                            <a href="">热销理财</a>
+                            <a href="">收益排行</a>
+                            <a href="">自动理财</a>
+                        </div>
+                        <div class="money_img3"><img src="images/moneybg.png"></div>
+                        <div class="money_link_one">
+                            <a href="">产品公告</a>
+                            <a href="">产品净值</a>
+                            <a href="">线上理财师</a>
+                    	</div>
+                	</div>
+                    <div class="money_bottom">
+                        <div class="money_news">
+                            <a href="">中国农业银行“安心·360天”人民币理财产品</a>
+                            <a href="">“金钥匙·安心得利·181天”人民币理财产品</a>
+                            <a href="">“金钥匙·安心得利·90天”人民币理财产品</a>
+                        </div>
+                        <div class="money_percent">
+                        	<a href="">4.55%</a>
+                            <a href="">&nbsp;&nbsp;4.5%</a>
+                            <a href="">4.45%</a>
+                        </div>
+                        <div class="money_img1"><img src="images/preferentialbg.png"></div>
+                        <div class="money_img2"><img src="images/moneybg.png"></div>
+                        <div class="money_link">
+                            <a href="">热销理财</a>
+                            <a href="">收益排行</a>
+                            <a href="">自动理财</a>
+                        </div>
+                        <div class="money_img3"><img src="images/moneybg.png"></div>
+                        <div class="money_link_one">
+                            <a href="">产品公告</a>
+                            <a href="">产品净值</a>
+                            <a href="">线上理财师</a>
+                    	</div>
+                	</div>
+            	</div>
+            </div>
+            <div class="banner_bottom overflowH">
+            	<a href=""><img src="images/banner_7.jpg"></a>
+                <a href=""><img src="images/banner_8.jpg"></a>
+                <a href=""><img src="images/banner_9.jpg"></a>
+                <a href=""><img src="images/banner_10.jpg"></a>
+                <div class="banner_bottom_ctrl">
+                	<span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                </div>
+            </div>
+            <div class="e_station">
+            	<div class="e_station_box">
+                	<div class="e_top">
+                    	<h2>生活</h2><img src="images/estation.png"><h2 style="margin-left:3px;">站</h2>
+                    </div>
+                    <div class="e_top">
+                    	<h2>互动</h2><img src="images/estation.png"><h2 style="margin-left:3px;">站</h2>
+                    </div>
+                    <div class="e_top">
+                    	<h2>申请</h2><img src="images/estation.png"><h2 style="margin-left:3px;">站</h2>
+                    </div>
+                    <div class="e_bottom">
+                        <img src="images/e_text1.png">
+                    </div>
+                </div>
+            </div>
+            <div class="preferential news">
+            	<div class="preferential_one">
+                	<h2>新闻快递<span>更多</span></h2>
+                    <a href=""><p>农业银行2015奶奶前三季度业务平稳发展</p></a>
+                    <a href=""><p>中国农业银行在伦敦上市中资金...</p></a>
+                    <a href=""><p>农业银行党委中心组召开“三严三实”...</p></a>
+                    <div class="clearB"></div>
+                </div>
+                <div class="preferential_two">
+                	<h2>服务公告<span>更多</span></h2>
+                    <a href=""><p>关于国家开发银行2015年金融债券招标结果的公告</p></a>
+                    <a href=""><p>关于支付清算系统暂停运行的通知（10月24日）</p></a>
+                    <a href=""><p>中国农业一囊再伦敦上市中资金</p></a>
+                    <div class="clearB"></div>
+                </div>
+            </div>
+		</div>
+		<div class="main_right">
+        	<div class="facile overflowH">
+            	<div class="facilebox">
+                	<h2>便捷通道</h2>
+                </div>
+                <div class="overflowH"><div class="faciletext_one">
+                	<div class="facileimg">
+                    	<img src="images/facile1.png">
+                        <a href="">账户查询</a>
+                    </div>
+                    <div class="facileimg">
+                    	<img src="images/facile2.png">
+                        <a href="">在线申请</a>
+                    </div>
+                    <div class="facileimg">
+                    	<img src="images/facile3.png">
+                        <a href="">网银开通</a>
+                    </div>
+                    <div class="facileimg">
+                    	<img src="images/facile4.png">
+                        <a href="">信用卡积分</a>
+                    </div>
+                </div>
+                <div class="faciletext_two">
+                	<div class="facileimg">
+                    	<img src="images/facile5.png">
+                        <a href="">K码支付</a>
+                    </div>
+                    <div class="facileimg">
+                    	<img src="images/facile6.png">
+                        <a href="">生活缴费</a>
+                    </div>
+                    <div class="facileimg">
+                    	<img src="images/facile7.png">
+                        <a href="">机票预订</a>
+                    </div>
+                    <div class="facileimg">
+                    	<img src="images/facile8.png">
+                        <a href="">章程协议</a>
+                    </div>
+                </div>
+                </div>
+                <div class="overflowH">
+                <div class="faciletext_three">
+                	<div class="facileimg">
+                    	<img src="images/facile9.png">
+                        <a href="">存款利率</a>
+                    </div>
+                    <div class="facileimg">
+                    	<img src="images/facile10.png">
+                        <a href="">外汇牌价</a>
+                    </div>
+                </div>
+                <div class="faciletext_four">
+                    <div class="facileimg">
+                    	<img src="images/facile11.png">
+                        <a href="">贷款利率</a>
+                    </div>
+                    <div class="facileimg">
+                    	<img src="images/facile12.png">
+                        <a href="">服务价格</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="access">
+            	<a href=""><img src="images/banner_4.png"></a>
+            </div>
+            <div class="custom overflowH">
+            	<div class="custombox">
+                	<h2>客户服务</h2>
+                </div>
+                <div class="custom_one">
+                    <div class="customimg">
+                    	<img src="images/custom1.png">
+                        <a href="">贷款利率</a>
+                    </div>
+                    <div class="customimg">
+                    	<img src="images/custom2.png">
+                        <a href="">服务价格</a>
+                    </div>
+                </div>
+                <div class="custom_two">
+                    <div class="customimg">
+                    	<img src="images/custom3.png">
+                        <a href="">贷款利率</a>
+                    </div>
+                    <div class="customimg">
+                    	<img src="images/custom4.png">
+                        <a href="">服务价格</a>
+                    </div>
+                </div>
+                <div class="wechate">
+                	<div class="wechateimg_one"><img src="images/custom5.png"></div>
+                    <a href="">官方微信<br>
+扫描二维码添加</a>
+					<div class="wechateimg_two"><img src="images/custom6.png"></div>
+                </div>
+                <div class="bank">
+                	<div class="bankimg_one"><img src="images/custom7.png"></div>
+                    <a href="">掌上银行<br>
+扫描二维码下载</a>
+					<div class="bankimg_two"><img src="images/custom8.png"></div>
+                </div>
+            </div>
+            <div class="online_shopping_hall">
+            	<a href=""><img src="images/banner_6.png"></a>
+            </div>
+        </div>
+	</div>
+</div>
+<!--footer-->
+<div class="footer">
+	<div class="area">
+    	<div class="footerbox overflowH">
+        	<div class="earth"><img src="images/earth.png"></div>
+            <a href="">&nbsp;分支结构&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="">网站声明&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="">网点查询&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="">网站地图&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="">联系我们&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="">客服热线：95599</a>
+            <div class="select">
+            	<form name="projectForm" method="post" action="">
+                <select name="City" class="index_xm_select" id="xm_area" onchange="changelocation(document.projectForm.City.options[document.projectForm.City.selectedIndex].value);">
+                <option value="">友情链接</option>
+                <option value="1">新浪网</option>
+                <option value="2">搜狐网</option>
+                <option value="3">腾讯网</option>
+                <option value="4">百度搜索</option>
+                <option value="5">中国理财网</option>
+                <option value="6">共产党员网</option>
+                <option value="7">中国城乡金融报</option>
+                <option value="8">农银国际控股有限公司</option>
+                <option value="9">农银汇理基金公司</option>
+                <option value="10">农银金融租赁有限公司</option>
+                <option value="11">农银人寿保险股份有限公司</option>
+                </select>
+            </div>
+            <div class="honest"><img src="images/honest.png"></div>
+        </div>
+        <div class="footer_bottom">
+        	<p>中国农业银行版权所有&nbsp;&nbsp;|&nbsp;&nbsp;京ICP备05049539</p>
+        </div>
+    </div>
+</div>
+<script>
+$(".topnavlink li").first().show().addClass("nav_current")
+$(".downlist div").hide().first().show()
+$(".topnavlink li").mouseenter(
+	function(){
+		$(this).addClass("nav_current").siblings().removeClass("nav_current")
+		$(".downlist div").hide().eq($(this).index()).show();
+	}
+).mouseleave(function(){
+		$(".topnavlink li").first().show().addClass("nav_current").siblings().removeClass("nav_current")
+		$(".downlist div").first().show().siblings().hide()
+	}
+);
+
+$(".ctrl span").first().show().addClass("ctrl_current")
+$(".bannerimg img").hide().first().show()
+$(".ctrl span").mouseenter(
+	function(){
+		$(this).addClass("ctrl_current").siblings().removeClass("ctrl_current")
+		$(".bannerimg img").hide().eq($(this).index()).show();
+	}
+);
+
+$(".recommend_nav a").first().show().addClass("recommend_current")
+$(".recommend_click .recommend_bottom").hide().first().show()
+$(".recommend_nav a").mouseenter(
+	function(){
+		$(this).addClass("recommend_current").siblings().removeClass("recommend_current")
+		$(".recommend_click .recommend_bottom").hide().eq($(this).index()).show();
+	}
+);
+$(".money_nav a").first().show().addClass("money_current")
+$(".money_click .money_bottom").hide().first().show()
+$(".money_nav a").mouseenter(
+	function(){
+		$(this).addClass("money_current").siblings().removeClass("money_current")
+		$(".money_click .money_bottom").hide().eq($(this).index()).show();
+	}
+)
+
+$(".banner_bottom_ctrl span").first().show().addClass("banner_bottom_current")
+$(".banner_bottom img").hide().first().show()
+$(".banner_bottom_ctrl span").mouseenter(
+	function(){
+		$(this).addClass("banner_bottom_current").siblings().removeClass("banner_bottom_current")
+		$(".banner_bottom img").hide().eq($(this).index()).show();
+	}
+);
+</script>
+</body>
+</html>
